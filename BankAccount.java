@@ -4,7 +4,7 @@ public class BankAccount {
     String password;
     public BankAccount(double b, int id, String p) {
         balance = b;
-        accountID = a;
+        accountID = id;
         password = p;
     }
     public BankAccount() {
