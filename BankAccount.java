@@ -38,13 +38,20 @@ public class BankAccount {
         else{return false;}
     }
     
-    public void main(String[] args) {
-        BankAccount a = new BankAccount(987.65, 1234567, "bean");
-        System.out.println(a.getBalance());
-        System.out.println(a.getAccountID());
-        a.setPassword("monky");
-        deposit(102.3);
-        withdraw(300.0);
-        withdraw(10000.0);
+    private boolean authenticate(String pass) {
+        return pass == password;
+    }
+    
+    public boolean transferTo(BankAccount o, double amt, String pass) {
+        if(authenticate(pass)) {
+            if(amt < balance) {
+                balance -= amt;
+                o.balance += amt;
+                System.out.println(amt + " transferred successfully.");
+                return true;
+            }
+            else{System.out.println("Amount withdrawn > Account balance"); return false;}
+        }
+        else{System.out.println("Incorrect password"); return false;}
     }
 }
